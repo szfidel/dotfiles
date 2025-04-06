@@ -1,0 +1,14 @@
+{
+	"color_scheme": "Packages/Aura Theme Color Scheme/aura-theme.tmTheme",
+	"theme": "Adaptive.sublime-theme",
+	"font_size": 18,
+	"highlight_line": true,
+	"line_padding_bottom": 5,
+	"line_padding_top": 5,
+	"vintage_start_in_command_mode": true,
+	"vintage_use_clipboard": true,
+	"relative_line_numbers": true,
+	"draw_white_space": ["selection", "trailing", "isolated"],
+	"ignored_packages": [],
+	/*"theme": "Adaptive.sublime-theme"*/
+}
