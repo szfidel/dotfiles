@@ -29,9 +29,13 @@ return {
         "html",
         "cssls",
         "tailwindcss",
-        "marksman",
+        "lua_ls",
         "pyright",
+        "marksman",
+        "bashls",
       },
+      -- Prevent automatic installation of unwanted LSPs
+      automatic_installation = false,
     })
     mason_tool_installer.setup({
       ensure_installed = {
