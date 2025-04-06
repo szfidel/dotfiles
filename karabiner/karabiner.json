@@ -1,0 +1,213 @@
+{
+    "profiles": [
+        {
+            "complex_modifications": {
+                "parameters": { "basic.to_if_held_down_threshold_milliseconds": 1000 },
+                "rules": [
+                    {
+                        "description": "Caps_Lock:Esc | Mod keys when held → g,h: Ctrl | f,j:Cmd | d,k:Shift | s,l:Ctrl+Opt+Cmd",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "g",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "left_control" }],
+                                "to_if_alone": [{ "key_code": "g" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "right_control" }],
+                                "to_if_alone": [{ "key_code": "h" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "f",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "right_command" }],
+                                "to_if_alone": [{ "key_code": "f" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "right_command" }],
+                                "to_if_alone": [{ "key_code": "j" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "d",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "left_shift" }],
+                                "to_if_alone": [{ "key_code": "d" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "right_shift" }],
+                                "to_if_alone": [{ "key_code": "k" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_control",
+                                        "modifiers": ["left_option", "left_command"]
+                                    }
+                                ],
+                                "to_if_alone": [{ "key_code": "s" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_control",
+                                        "modifiers": ["left_option", "left_command"]
+                                    }
+                                ],
+                                "to_if_alone": [{ "key_code": "l" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "caps_lock" },
+                                "to": [{ "key_code": "escape" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Alt+Vowel to accent and Alt+n to ñ",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "a",
+                                    "modifiers": {
+                                        "mandatory": ["option"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "e",
+                                        "modifiers": ["option"]
+                                    },
+                                    { "key_code": "a" }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "e",
+                                    "modifiers": {
+                                        "mandatory": ["option"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "e",
+                                        "modifiers": ["option"]
+                                    },
+                                    { "key_code": "e" }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "i",
+                                    "modifiers": {
+                                        "mandatory": ["option"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "e",
+                                        "modifiers": ["option"]
+                                    },
+                                    { "key_code": "i" }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "o",
+                                    "modifiers": {
+                                        "mandatory": ["option"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "e",
+                                        "modifiers": ["option"]
+                                    },
+                                    { "key_code": "o" }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "u",
+                                    "modifiers": {
+                                        "mandatory": ["option"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "e",
+                                        "modifiers": ["option"]
+                                    },
+                                    { "key_code": "u" }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "n",
+                                    "modifiers": {
+                                        "mandatory": ["option"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "n",
+                                        "modifiers": ["option"]
+                                    },
+                                    { "key_code": "n" }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "name": "Default profile",
+            "selected": true,
+            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
+        }
+    ]
+}
