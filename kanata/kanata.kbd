@@ -1,0 +1,116 @@
+;; Kanata keyboard configuration for MacOS
+
+(defcfg
+  ;; Mac OS specific configuration
+  process-unmapped-keys yes
+  ;; Uncomment the following if needed for proper option key behavior
+  ;; macos-opt-mask ctrl
+)
+
+;; Define all keys we're remapping
+(defsrc
+  esc f1    f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lalt lmet           spc            rmet ralt rctl
+)
+
+;; Define aliases for the tap-hold modifiers with custom timings
+(defalias
+  ;; Home row mods
+  d-sh (tap-hold 200 200 d lsft)  ;; d = d when tapped, left shift when held
+  k-sh (tap-hold 200 200 k rsft)  ;; k = k when tapped, right shift when held
+  
+  g-ct (tap-hold 200 200 g lctl)  ;; g = g when tapped, left control when held
+  h-ct (tap-hold 200 200 h rctl)  ;; h = h when tapped, right control when held
+  
+  f-cm (tap-hold 200 200 f lmet)  ;; f = f when tapped, left command when held
+  j-cm (tap-hold 200 200 j rmet)  ;; j = j when tapped, right command when held
+  
+  s-hm (tap-hold 200 200 s (multi lctl lalt lmet))  ;; s = s when tapped, ctrl+alt+cmd when held
+  l-hm (tap-hold 200 200 l (multi rctl ralt rmet))  ;; l = l when tapped, ctrl+alt+cmd when held
+  
+  ;; Number shift actions (tap for normal, hold for shifted)
+  ;; Using chord notation: S-1 means Shift+1 which produces !
+  1-sh (tap-hold 200 200 1 S-1)    ;; 1/!
+  2-sh (tap-hold 200 200 2 S-2)    ;; 2/@
+  3-sh (tap-hold 200 200 3 S-3)    ;; 3/#
+  4-sh (tap-hold 200 200 4 S-4)    ;; 4/$
+  5-sh (tap-hold 200 200 5 S-5)    ;; 5/%
+  6-sh (tap-hold 200 200 6 S-6)    ;; 6/^
+  7-sh (tap-hold 200 200 7 S-7)    ;; 7/&
+  8-sh (tap-hold 200 200 8 S-8)    ;; 8/*
+  9-sh (tap-hold 200 200 9 S-9)    ;; 9/(
+  0-sh (tap-hold 200 200 0 S-0)    ;; 0/)
+  
+  ;; Symbol shift actions
+  grv-sh (tap-hold 200 200 grv S-grv)  ;; `/~
+  min-sh (tap-hold 200 200 - S--)      ;; -/_
+  eql-sh (tap-hold 200 200 = S-=)      ;; =/+
+  lbr-sh (tap-hold 200 200 [ S-[)      ;; [/{
+  rbr-sh (tap-hold 200 200 ] S-])      ;; ]/}
+  bsl-sh (tap-hold 200 200 \ S-\)      ;; \/|
+  sco-sh (tap-hold 200 200 ; S-;)      ;; ;/:
+  quo-sh (tap-hold 200 200 ' S-')      ;; '/"
+  com-sh (tap-hold 200 200 , S-,)      ;; ,/<
+  dot-sh (tap-hold 200 200 . S-.)      ;; ./>
+  sla-sh (tap-hold 200 200 / S-/)      ;; ?/
+  
+  ;; In macOS, Option+e creates a dead key for acute accent
+  ;; This sequence types Option+e followed by the letter
+  a-acc (macro RA-e a)  ;; For á
+  e-acc (macro RA-e e)  ;; For é
+  i-acc (macro RA-e i ) ;; For í
+  o-acc (macro RA-e o ) ;; For ó
+  u-acc (macro RA-e u ) ;; For ú
+  n-acc (macro RA-n n);; For ñ (Option+n followed by n)
+  
+  ;; Layer switching
+  nav (tap-hold 200 500 spc (layer-toggle nav-layer))
+)
+
+;; Main layer with home row mods
+(deflayer default
+  esc f1    f2   f3   f4   brdn  brup  prev  pp  next  mute  vold  volu
+  @grv-sh @1-sh @2-sh @3-sh @4-sh @5-sh @6-sh @7-sh @8-sh @9-sh @0-sh @min-sh @eql-sh bspc
+  tab  q    w    e    r    t    y    u    i    o    p    @lbr-sh @rbr-sh @bsl-sh
+  esc  a    @s-hm @d-sh @f-cm @g-ct @h-ct @j-cm @k-sh @l-hm @sco-sh @quo-sh ret
+  lsft z    x    c    v    b    n    m    @com-sh @dot-sh @sla-sh rsft
+  lctl lalt lmet           @nav            rmet ralt rctl
+)
+
+;; Navigation layer (activated by holding space)
+(deflayer nav-layer
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    @e-acc _ _    _    @u-acc @i-acc @o-acc _    _    _    _
+  _    @a-acc _ _    _    _    left down up   right _    _    _
+  _    _    _    _    _    _    @n-acc _    _    _    _    _
+  _    _    _              _              _    _    _
+)
+
+;; Notes:
+;; 1. The tap-hold function takes 4 parameters:
+;;    - tap-timeout: how long to wait for a tap (200ms)
+;;    - hold-timeout: how long to wait before activating hold action (200ms)
+;;    - tap-action: what happens when key is tapped
+;;    - hold-action: what happens when key is held
+;; 2. For shifted keys, we use chord notation:
+;;    - S-1 for !
+;;    - S-2 for @
+;;    - S-- for _
+;;    - etc.
+;; 3. The accent implementation uses macros but might need customization
+;;    depending on your Mac's input method
+;; 4. Caps Lock is mapped to Escape in the default layer
+;; 5. Navigation layer is activated by holding the spacebar:
+;;    - h = left arrow
+;;    - j = down arrow
+;;    - k = up arrow
+;;    - l = right arrow
+;; 6. Numbers and symbols have dual functions:
+;;    - Tap 1 for 1, hold for !
+;;    - Tap - for -, hold for _
+;;    etc.
