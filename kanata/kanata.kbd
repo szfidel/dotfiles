@@ -6,10 +6,8 @@
   process-unmapped-keys yes
   ;; Uncomment the following if needed for proper option key behavior
   ;; macos-opt-mask ctrl
-  macos-dev-names-include (
-    "Apple Internal Keyboard / Trackpad"
-    "MX Keys Mini"
-  )
+
+  ;; Excluded devices
   macos-dev-names-exclude (
     "MX Master 2S"
   )
