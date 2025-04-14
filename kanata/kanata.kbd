@@ -1,10 +1,19 @@
-;; Kanata keyboard configuration for MacOS
+;; Kanata keyboard configuration converted from Karabiner
+;; This configuration replicates your Karabiner setup with individual hold timings
 
 (defcfg
   ;; Mac OS specific configuration
   process-unmapped-keys yes
   ;; Uncomment the following if needed for proper option key behavior
   ;; macos-opt-mask ctrl
+  macos-dev-names-include (
+    "Apple Internal Keyboard / Trackpad"
+    "MX Keys Mini"
+  )
+  macos-dev-names-exclude (
+    "MX Master 2S"
+  )
+
 )
 
 ;; Define all keys we're remapping
@@ -52,12 +61,14 @@
   lbr-sh (tap-hold 200 200 [ S-[)      ;; [/{
   rbr-sh (tap-hold 200 200 ] S-])      ;; ]/}
   bsl-sh (tap-hold 200 200 \ S-\)      ;; \/|
+  esc-ca (tap-hold 200 200 esc C-a)    ;; esc/C-a  
   sco-sh (tap-hold 200 200 ; S-;)      ;; ;/:
   quo-sh (tap-hold 200 200 ' S-')      ;; '/"
   com-sh (tap-hold 200 200 , S-,)      ;; ,/<
   dot-sh (tap-hold 200 200 . S-.)      ;; ./>
   sla-sh (tap-hold 200 200 / S-/)      ;; ?/
   
+  ;; Accented characters via macOS dead keys
   ;; In macOS, Option+e creates a dead key for acute accent
   ;; This sequence types Option+e followed by the letter
   a-acc (macro RA-e a)  ;; For á
@@ -76,7 +87,7 @@
   esc f1    f2   f3   f4   brdn  brup  prev  pp  next  mute  vold  volu
   @grv-sh @1-sh @2-sh @3-sh @4-sh @5-sh @6-sh @7-sh @8-sh @9-sh @0-sh @min-sh @eql-sh bspc
   tab  q    w    e    r    t    y    u    i    o    p    @lbr-sh @rbr-sh @bsl-sh
-  esc  a    @s-hm @d-sh @f-cm @g-ct @h-ct @j-cm @k-sh @l-hm @sco-sh @quo-sh ret
+  @esc-ca  a    @s-hm @d-sh @f-cm @g-ct @h-ct @j-cm @k-sh @l-hm @sco-sh @quo-sh ret
   lsft z    x    c    v    b    n    m    @com-sh @dot-sh @sla-sh rsft
   lctl lalt lmet           @nav            rmet ralt rctl
 )
